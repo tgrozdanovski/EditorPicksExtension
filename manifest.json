@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Editor Picks Extension",
+  "version": "1.0.0",
+  "description": "Chrome extension for Editor Picks",
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    },
+    "default_title": "Editor Picks"
+  },
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*editor-picks*"],
+      "js": ["js/content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*/*Media.Approval*"],
+      "js": ["js/approval-modal.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
